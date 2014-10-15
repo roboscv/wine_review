@@ -1,1 +1,8 @@
-Test
+<h1>Wine </h1>
+<p>The great wines of </p>
+<ol>
+<% @wines.each do |wine| %>
+  <li><%= link_to(wine.name, wine) %>, a <%= wine.varietal %>
+by <%= wine.winery %></li>
+<% end %>
+</ol>
