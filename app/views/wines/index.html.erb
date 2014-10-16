@@ -1,10 +1,10 @@
 <h1>Wine </h1>
-<p>The great wines of </p>
+<p>The great wines of Casey's Winery Group</p>
+<%= page_entries_info @wines %>
 <ol>
 <% @wines.each do |wine| %>
   <li><%= link_to(wine.name, wine) %>, a <%= wine.varietal %>
 by <%= wine.winery %></li>
 <% end %>
 </ol>
-
-<%= link_to 'New Wine', new_wine_path %>
+<%= paginate @wines %>

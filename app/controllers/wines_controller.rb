@@ -1,10 +1,12 @@
  class WinesController < ApplicationController
+  
+  before_action :set_book, only: [ :show, :edit, :update, :destroy ]
+
   def index
-  	@wines = Wine.all
-  end
+  @wines = Wine.order(:name).page(params[:page])
+end
 
   def show
-	@wine = Wine.find(params[:id])
   end
 
   def new
@@ -13,23 +15,26 @@
 
   def create
   	@wine = Wine.new(wine_params)
-  @wine.save
-  redirect_to @wine
+    if @wine.save
+      redirect_to @wine, notice: "#{@wine.name} was created!"
+    else
+      render :new
+    end
   end
 
   def edit
-  	@wine = Wine.find(params[:id])
 
   end
 
   def update
-  	@wine = Wine.find(params[:id])
-  @wine.update(wine_params)
-  redirect_to @wine
+    if @wine.update(wine_params)
+      redirect_to @wine, notice: "#{@wine.name} was updated!"
+    else
+      render :new
+    end
   end
 
   def destroy
-  	@wine = Wine.find(params[:id])
   	@wine.destroy
   	redirect_to wines_url
 	end
@@ -39,5 +44,11 @@
   def wine_params
   params.require(:wine).permit(:name, :year, :winery, 
   	:country, :varietal)
+  end
+
+  
+  
+  def set_book
+   @wine = Wine.find(params[:id])
   end
 end
