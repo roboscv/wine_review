@@ -9,4 +9,6 @@ class Wine < ActiveRecord::Base
 			inclusion: {in: VARIETALS},
 			if: "varietal.present?"
 
+	has_many :log_entries, dependent: :destroy
+
 end

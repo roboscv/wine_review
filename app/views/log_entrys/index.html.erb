@@ -1,0 +1,17 @@
+<header>Reviews for <%= link_to(@wine.name, @wine) %></header>
+<ol id="log_entries">
+  <% @log_entries.each do |log_entry| %>
+    <li>
+      <span class="log_entry"><%= pluralize(log_entry.ratings, 'rating') %></span>
+      <span class="user">by <%= log_entry.name %> </span>
+      <span class="date">
+        <%= time_ago_in_words(log_entry.created_at) %> ago
+      </span>
+      <p>
+        &quot;<%= log_entry.comment %>&quot;
+              </p>
+    </li>
+  <% end %>
+</ol>
+
+<%= link_to 'Write a Log Entry', new_wine_log_entry_path(@wine) %>
