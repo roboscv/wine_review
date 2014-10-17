@@ -7,6 +7,10 @@
   <% LogEntry::RATINGS.each do |rating| %>
     <%= f.radio_button :rating, rating %> <%= rating %>
   <% end %><br />
+  <%= f.label :location %><br/>
+  <%= f.text_field :location, placeholder: 'Location' %><br/>
+  <%= f.label :tasted_on %><br/>
+  <%= f.date_select :tasted_on %><br/>
   <%= f.label :comments %><br/>
   <%= f.text_area :comments %><br/>
   <p>
