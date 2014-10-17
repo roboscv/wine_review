@@ -17,7 +17,7 @@ before_action :set_wine
 
 
 def index
-  @log_entrys = @wine.log_entries.order('created_at desc')
+  @log_entries = @wine.log_entries.order('created_at desc')
 end
 
 private
@@ -26,7 +26,7 @@ def set_wine
   @wine = Wine.find(params[:wine_id])
 end
 
-def review_params
+def log_entry_params
   params.require(:log_entry).permit(:name, :rating, :location, :comments, :tasted_on)
 end
 
